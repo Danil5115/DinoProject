@@ -16,8 +16,8 @@ skins = ["cobalt", "gold", "insta", "default", "aqua", "black", "bloody",
          "purple", "rgb", "silver", "subaru", "sunny", "toxic",
          "lime", "magenta", "magma", "navy", "neon", "orange", "pinky"]
 names = ['Petr', 'Batman', 'T-REX', 'Tsar', 'Bear', 'Coolest', 'Little Boy', 'Fat Man',
-         "Малыш", "Раскольников", "Пушкин", "Lukáš", "Рядовой", "Matěj", "Kafka", "Švejk",
-         "Чехов", "Толстой"]
+         "Baby", "Raskolnikov", "Pushkin", "Lukáš", "Ranker", "Matěj", "Kafka", "Švejk",
+         "Czechov", "Tolstoy"]
 generation = 0
 
 
@@ -42,7 +42,7 @@ class Dino:
 
     def __init__(self, x, y, color='default', name=None):
         self.color = color
-        self.load_sprites()  # sprite элемент компьютерной графики 2д
+        self.load_sprites()  # sprite 2D computer graphics element
         self.hitbox = pygame.Rect(x, y, self.sprites['run'][0].get_width(), self.sprites['run'][0].get_height())
         self.image = self.sprites['run'][0]
 
@@ -73,10 +73,10 @@ class Dino:
     def jump(self):
         if self.state == DinoState.JUMP:
             self.hitbox.y -= self.cur_jump_power * (2 * (game_speed / 8))
-            self.cur_jump_power -= 0.5 * (game_speed / 8)  # скорость того как прыгает динозавр
+            self.cur_jump_power -= 0.5 * (game_speed / 8)  # the speed of how a dinosaur jumps
 
             if self.hitbox.y >= height - 170:
-                self.hitbox.y = height - 170   # возвращает в обратное положение
+                self.hitbox.y = height - 170   # returns to the reverse position
                 self.state = DinoState.RUN
                 self.cur_jump_power = self.jump_power
         else:
@@ -87,7 +87,7 @@ class Dino:
         scr.blit(self.image, (self.hitbox.x, self.hitbox.y))
 
         if fnt is not None:
-            c_label = fnt.render(self.name.capitalize(), True, (100, 100, 100))  # фон того как нарисовать имя и динозавра
+            c_label = fnt.render(self.name.capitalize(), True, (100, 100, 100))  # background on how to draw a name and a dinosaur
             c_label_rect = c_label.get_rect()
             c_label_rect.center = (self.hitbox.x + 45, self.hitbox.y - 30)
             scr.blit(c_label, c_label_rect)
@@ -242,7 +242,7 @@ def run_game(genomes, config):
             output = nets[i].activate((dinosaur.hitbox.y,
                                        calc_dist((dinosaur.hitbox.x, dinosaur.hitbox.y), enemies[0].hitbox.midtop),
                                        enemies[0].hitbox.width,
-                                       game_speed))  # то как выбирает прыгать нейронка. Учитывается положение динозавра, скорость игры, расстояние до кактуса, ширина препятствия
+                                       game_speed))  # this is how the neuron chooses to jump. The position of the dinosaur, the speed of the game, the distance to the cactus, and the width of the obstacle are taken into account
 
             if output[0] > 0.5 and dinosaur.state is not DinoState.JUMP:
                 dinosaur.jump()
@@ -277,13 +277,13 @@ def run_game(genomes, config):
         label = heading_font.render('Generation: ' + str(generation), True, (0, 72, 186))
         label_rect = label.get_rect()
         label_rect.center = (width / 2, 150)
-        screen.blit(label, label_rect)  # 1 ое текст, 2 ое размеры
+        screen.blit(label, label_rect)  # 1st text, 2nd dimensions
 
         # display game speed
         score_label = score_font.render('Speed: ' + str(game_speed / 8) + 'x', True, (50, 50, 50))
-        score_label_rect = score_label.get_rect()  # создаёт прямоугольник с текстом
+        score_label_rect = score_label.get_rect()  # creates a rectangle with text
         score_label_rect.center = (115, 50)   # location
-        screen.blit(score_label, score_label_rect)  # отрисовка
+        screen.blit(score_label, score_label_rect)  # render
 
         # flip n tick
         pygame.display.flip()
