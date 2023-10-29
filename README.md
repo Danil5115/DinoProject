@@ -35,3 +35,7 @@ To run the DinoProject and observe the evolution of the dinosaurs, follow these 
 This project was created by **Danil Korchagin** and is inspired by the "Chrome Dinosaur Game" and NEAT-Powered evolutionary algorithms.
 
 Happy evolving and gaming with the DinoProject!
+
+![Photo1](sprites/1.jpg)
+![Photo2](sprites/2.jpg)
+
